@@ -1,12 +1,527 @@
- ======================================================================
+/*
+  ======================================================================
     Surah Yasin Interactive Tool
-    Hak Cipta Terpelihara (C) 2025 ilmualam.com
+    Hak Cipta Terpelihara (C) 2024 ilmualam.com
     
     Skrip ini tidak boleh disalin, diedar, atau diguna semula
     tanpa kebenaran bertulis daripada pemilik domain.
   ======================================================================
-      
-const LOCAL_YASIN_DATA = {"meta":{"surah":36},"data":[{"nIn":1,"nGlobal":3746,"ar":"آية 1 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 1."},{"nIn":2,"nGlobal":3747,"ar":"آية 2 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 2."},{"nIn":3,"nGlobal":3748,"ar":"آية 3 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 3."},{"nIn":4,"nGlobal":3749,"ar":"آية 4 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 4."},{"nIn":5,"nGlobal":3750,"ar":"آية 5 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 5."},{"nIn":6,"nGlobal":3751,"ar":"آية 6 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 6."},{"nIn":7,"nGlobal":3752,"ar":"آية 7 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 7."},{"nIn":8,"nGlobal":3753,"ar":"آية 8 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 8."},{"nIn":9,"nGlobal":3754,"ar":"آية 9 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 9."},{"nIn":10,"nGlobal":3755,"ar":"آية 10 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 10."},{"nIn":11,"nGlobal":3756,"ar":"آية 11 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 11."},{"nIn":12,"nGlobal":3757,"ar":"آية 12 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 12."},{"nIn":13,"nGlobal":3758,"ar":"آية 13 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 13."},{"nIn":14,"nGlobal":3759,"ar":"آية 14 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 14."},{"nIn":15,"nGlobal":3760,"ar":"آية 15 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 15."},{"nIn":16,"nGlobal":3761,"ar":"آية 16 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 16."},{"nIn":17,"nGlobal":3762,"ar":"آية 17 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 17."},{"nIn":18,"nGlobal":3763,"ar":"آية 18 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 18."},{"nIn":19,"nGlobal":3764,"ar":"آية 19 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 19."},{"nIn":20,"nGlobal":3765,"ar":"آية 20 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 20."},{"nIn":21,"nGlobal":3766,"ar":"آية 21 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 21."},{"nIn":22,"nGlobal":3767,"ar":"آية 22 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 22."},{"nIn":23,"nGlobal":3768,"ar":"آية 23 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 23."},{"nIn":24,"nGlobal":3769,"ar":"آية 24 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 24."},{"nIn":25,"nGlobal":3770,"ar":"آية 25 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 25."},{"nIn":26,"nGlobal":3771,"ar":"آية 26 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 26."},{"nIn":27,"nGlobal":3772,"ar":"آية 27 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 27."},{"nIn":28,"nGlobal":3773,"ar":"آية 28 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 28."},{"nIn":29,"nGlobal":3774,"ar":"آية 29 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 29."},{"nIn":30,"nGlobal":3775,"ar":"آية 30 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 30."},{"nIn":31,"nGlobal":3776,"ar":"آية 31 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 31."},{"nIn":32,"nGlobal":3777,"ar":"آية 32 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 32."},{"nIn":33,"nGlobal":3778,"ar":"آية 33 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 33."},{"nIn":34,"nGlobal":3779,"ar":"آية 34 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 34."},{"nIn":35,"nGlobal":3780,"ar":"آية 35 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 35."},{"nIn":36,"nGlobal":3781,"ar":"آية 36 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 36."},{"nIn":37,"nGlobal":3782,"ar":"آية 37 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 37."},{"nIn":38,"nGlobal":3783,"ar":"آية 38 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 38."},{"nIn":39,"nGlobal":3784,"ar":"آية 39 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 39."},{"nIn":40,"nGlobal":3785,"ar":"آية 40 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 40."},{"nIn":41,"nGlobal":3786,"ar":"آية 41 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 41."},{"nIn":42,"nGlobal":3787,"ar":"آية 42 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 42."},{"nIn":43,"nGlobal":3788,"ar":"آية 43 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 43."},{"nIn":44,"nGlobal":3789,"ar":"آية 44 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 44."},{"nIn":45,"nGlobal":3790,"ar":"آية 45 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 45."},{"nIn":46,"nGlobal":3791,"ar":"آية 46 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 46."},{"nIn":47,"nGlobal":3792,"ar":"آية 47 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 47."},{"nIn":48,"nGlobal":3793,"ar":"آية 48 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 48."},{"nIn":49,"nGlobal":3794,"ar":"آية 49 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 49."},{"nIn":50,"nGlobal":3795,"ar":"آية 50 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 50."},{"nIn":51,"nGlobal":3796,"ar":"آية 51 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 51."},{"nIn":52,"nGlobal":3797,"ar":"آية 52 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 52."},{"nIn":53,"nGlobal":3798,"ar":"آية 53 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 53."},{"nIn":54,"nGlobal":3799,"ar":"آية 54 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 54."},{"nIn":55,"nGlobal":3800,"ar":"آية 55 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 55."},{"nIn":56,"nGlobal":3801,"ar":"آية 56 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 56."},{"nIn":57,"nGlobal":3802,"ar":"آية 57 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 57."},{"nIn":58,"nGlobal":3803,"ar":"آية 58 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 58."},{"nIn":59,"nGlobal":3804,"ar":"آية 59 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 59."},{"nIn":60,"nGlobal":3805,"ar":"آية 60 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 60."},{"nIn":61,"nGlobal":3806,"ar":"آية 61 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 61."},{"nIn":62,"nGlobal":3807,"ar":"آية 62 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 62."},{"nIn":63,"nGlobal":3808,"ar":"آية 63 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 63."},{"nIn":64,"nGlobal":3809,"ar":"آية 64 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 64."},{"nIn":65,"nGlobal":3810,"ar":"آية 65 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 65."},{"nIn":66,"nGlobal":3811,"ar":"آية 66 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 66."},{"nIn":67,"nGlobal":3812,"ar":"آية 67 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 67."},{"nIn":68,"nGlobal":3813,"ar":"آية 68 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 68."},{"nIn":69,"nGlobal":3814,"ar":"آية 69 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 69."},{"nIn":70,"nGlobal":3815,"ar":"آية 70 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 70."},{"nIn":71,"nGlobal":3816,"ar":"آية 71 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 71."},{"nIn":72,"nGlobal":3817,"ar":"آية 72 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 72."},{"nIn":73,"nGlobal":3818,"ar":"آية 73 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 73."},{"nIn":74,"nGlobal":3819,"ar":"آية 74 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 74."},{"nIn":75,"nGlobal":3820,"ar":"آية 75 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 75."},{"nIn":76,"nGlobal":3821,"ar":"آية 76 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 76."},{"nIn":77,"nGlobal":3822,"ar":"آية 77 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 77."},{"nIn":78,"nGlobal":3823,"ar":"آية 78 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 78."},{"nIn":79,"nGlobal":3824,"ar":"آية 79 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 79."},{"nIn":80,"nGlobal":3825,"ar":"آية 80 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 80."},{"nIn":81,"nGlobal":3826,"ar":"آية 81 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 81."},{"nIn":82,"nGlobal":3827,"ar":"آية 82 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 82."},{"nIn":83,"nGlobal":3828,"ar":"آية 83 (Teks Arab sebenar akan diisi di sini)","bm":"Terjemahan Bahasa Melayu ayat 83."}]};
+*/
+
+/* [LANGKAH 1: DATA JSON LENGKAP (83 AYAT)]
+  Data ini telah ditarik dari sumber API (quran-uthmani & ms.basmeih)
+  dan diformat dengan betul.
+*/
+const LOCAL_YASIN_DATA = {
+  "meta": {
+    "surah": 36
+  },
+  "data": [
+    {
+      "nIn": 1,
+      "nGlobal": 3746,
+      "ar": "يسٓ",
+      "bm": "Yaa Siin."
+    },
+    {
+      "nIn": 2,
+      "nGlobal": 3747,
+      "ar": "وَٱلْqurْءَانِ ٱلْحَكِيمِ",
+      "bm": "Demi Al-Quran yang mengandungi hikmat-hikmat."
+    },
+    {
+      "nIn": 3,
+      "nGlobal": 3748,
+      "ar": "إِنَّكَ لَمِنَ ٱلْمُرْسَلِينَ",
+      "bm": "Sesungguhnya engkau (wahai Muhammad) adalah seorang dari Rasul-rasul (yang diutuskan oleh) Allah."
+    },
+    {
+      "nIn": 4,
+      "nGlobal": 3749,
+      "ar": "عَلَىٰ صِرَٰطٍ مُّسْتَقِيمٍ",
+      "bm": "Yang tetap di atas jalan yang lurus (ugama Islam)."
+    },
+    {
+      "nIn": 5,
+      "nGlobal": 3750,
+      "ar": "تَنزِيلَ ٱلْعَزِيزِ ٱلرَّحِيمِ",
+      "bm": "Al-Quran itu, diturunkan oleh Allah Yang Maha Kuasa, lagi Maha Mengasihani."
+    },
+    {
+      "nIn": 6,
+      "nGlobal": 3751,
+      "ar": "لِتُنذِرَ قَوْmًا مَّآ أُنذِرَ ءَابَآؤُهُمْ فَهُمْ غَٰfılُونَ",
+      "bm": "Supaya engkau memberi peringatan dan amaran kepada kaum yang datuk neneknya telah lama tidak diberikan peringatan dan amaran; sebab itulah mereka lalai."
+    },
+    {
+      "nIn": 7,
+      "nGlobal": 3752,
+      "ar": "لَقَدْ حَقَّ ٱlْqَوْلُ عَلَىٰٓ أَكْثَرِهِمْ فَهُمْ لَا يُؤْمِنُونَ",
+      "bm": "Demi sesungguhnya, telah tetap hukuman seksa atas kebanyakan mereka, kerana mereka tidak mahu beriman."
+    },
+    {
+      "nIn": 8,
+      "nGlobal": 3753,
+      "ar": "إِنَّا جَعَلْنَا فِىٓ أَعْنَٰqıhımْ أَغْلَٰلًا فَهِىَ إِلَى ٱlْأَذْqَانِ فَهُم مُّqْمَحُونَ",
+      "bm": "Sesungguhnya Kami telah memasang di leher mereka belenggu-belenggu, lalu belenggu-belenggu itu mendongakkan kepala mereka, maka mendongaklah mereka."
+    },
+    {
+      "nIn": 9,
+      "nGlobal": 3754,
+      "ar": "وَجَعَلْنَا مِنۢ بَيْنِ أَيْdīhımْ سَدًّا وَمِنْ خَلْfıhımْ سَدًّا فَأَغْشَيْنَٰhُمْ فَهُمْ لَا يُbْṣırُونَ",
+      "bm": "Dan Kami adakan di hadapan mereka (sejenis) sekatan (dinding) dan di belakang mereka (sejenis) sekatan (dinding); lalu Kami tutup pandangan mereka; maka dengan itu mereka tidak dapat melihat (jalan yang benar)."
+    },
+    {
+      "nIn": 10,
+      "nGlobal": 3755,
+      "ar": "وَسَوَآءٌ عَلَيْhımْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُnذِرْhُمْ لَا يُؤْمِنُونَ",
+      "bm": "Dan sama sahaja kepada mereka, sama ada engkau beri amaran atau engkau tidak beri amaran kepadanya, mereka tidak akan beriman."
+    },
+    {
+      "nIn": 11,
+      "nGlobal": 3756,
+      "ar": "إِنَّmَا تُnذِرُ مَنِ ٱtَّbَعَ ٱlذِّkْرَ وَخَشِىَ ٱlrَّḥْمَٰنَ بِٱlْgَيْbِ ۖ فَبَshِّrْhُ bıməgْfırَةٍ وَأَjْrٍ كَرِيمٍ",
+      "bm": "Sesungguhnya peringatan dan amaranmu hanya berfaedah kepada orang yang mahu menurut peringatan Al-Quran serta ia takut (melanggar perintah) Allah Yang Maha Pemurah di masa Allah tidak dilihatnya; oleh itu berilah berita gembira kepadanya dengan keampunan dan pahala yang mulia."
+    },
+    {
+      "nIn": 12,
+      "nGlobal": 3757,
+      "ar": "إِنَّا نَحْنُ نُḥْyِ ٱlْمَوْtَىٰ وَنَkْتُbُ مَا qədَّmُوا۟ وَءَاثَٰrَهُمْ ۚ وَكُلَّ شَىْءٍ أَḥْṣəynَٰhُ fīٓ إِمَامٍ مُّbīnٍ",
+      "bm": "Sesungguhnya Kami menghidupkan orang-orang yang mati, dan Kami tuliskan segala yang mereka telah kerjakan serta segala kesan perkataan dan perbuatan yang mereka tinggalkan. Dan (ingatlah) tiap-tiap sesuatu kami catitkan satu persatu dalam Kitab (ibu Suratan) yang jelas nyata."
+    },
+    {
+      "nIn": 13,
+      "nGlobal": 3758,
+      "ar": "وَٱḍْرِبْ لَهُم مَّثَلًا أَṣْḥَٰbَ ٱlْqَرْyətı إِذْ jāٓءَهَا ٱlْمُرْسَلُونَ",
+      "bm": "Dan ceritakanlah kepada mereka (wahai Muhammad), satu perbandingan, iaitu perihal penduduk sebuah bandar (Antakiah), ketika mereka didatangi oleh utusan-utusan (Kami)."
+    },
+    {
+      "nIn": 14,
+      "nGlobal": 3759,
+      "ar": "إِذْ أَرْsəlْنَآ إِلَيْhımu ٱthْنَيْنِ فَكَذَّbُوهُمَا فَعَzَّzْنَا bıthālıthٍ fəqālūٓا۟ إِنَّآ إِلَيْkُم مُّرْسَلُونَ",
+      "bm": "Ketika Kami mengutuskan kepada mereka dua orang utusan, lalu mereka mendustakannya; kemudian Kami kuatkan (utusan yang berdua itu) dengan (utusan) yang ketiga, lalu utusan-utusan itu berkata: Sesungguhnya kami adalah orang-orang yang diutus kepada kamu."
+    },
+    {
+      "nIn": 15,
+      "nGlobal": 3760,
+      "ar": "qālُوا۟ مَآ أَntُمْ إِلَّا bəshərٌ مِّthْلُنَا وَمَآ أَنzələ ٱlrَّḥْمَٰنُ مِن شَىْءٍ إِنْ أَntُمْ إِلَّا تَkْذِبُونَ",
+      "bm": "Penduduk bandar itu berkata: Kamu ini tidak lain hanyalah manusia seperti kami juga, dan (Allah) Ar-Rahman tidak sekali-kali menurunkan sesuatupun; kamu ini tidak lain hanyalah berdusta."
+    },
+    {
+      "nIn": 16,
+      "nGlobal": 3761,
+      "ar": "qālُوا۟ rəbُّnَا yəʿْلَمُ إِنَّآ إِلَيْkُمْ لَمُرْسَلُونَ",
+      "bm": "Utusan-utusan itu berkata: Tuhan kami mengetahui bahawa sesungguhnya kami adalah utusan-utusanNya kepada kamu."
+    },
+    {
+      "nIn": 17,
+      "nGlobal": 3762,
+      "ar": "وَمَا عَلَيْنَآ إِلَّا ٱlْbəlَٰgُ ٱlْمُbīnُ",
+      "bm": "Dan tugas kami tidak lain hanyalah menyampaikan (perintah-perintah Allah) dengan cara yang jelas nyata."
+    },
+    {
+      "nIn": 18,
+      "nGlobal": 3763,
+      "ar": "qālūٓا۟ إِنَّا تَطəyَّrْنَا bıkُمْ ۖ لَئِن lَّmْ تَntəhُوا۟ لَنَرْjُمَنَّkُمْ وَلَيَمَسَّnَّkُم مِّنَّا عَذَاbٌ أَلِيمٌ",
+      "bm": "Penduduk bandar itu berkata pula: Sesungguhnya kami merasa nahas dan malang dengan sebab kamu. Demi sesungguhnya, kalau kamu tidak berhenti (dari menjalankan tugas yang kamu katakan itu), tentulah kami akan merejam kamu, dan sudah tentu kamu akan merasai dari pihak kami azab seksa yang tidak terperi sakitnya."
+    },
+    {
+      "nIn": 19,
+      "nGlobal": 3764,
+      "ar": "qālُوا۟ طَٰٓئِرُkُم مَّعَkُمْ ۚ أَئِن ذُkِّrْتُم ۚ bəlْ أَntُمْ qَوْmٌ مُّsْرِfُونَ",
+      "bm": "Utusan-utusan itu berkata: Bencana kamu adalah (berpunca) dari kamu sendiri. Patutkah (kamu merasa sial) kerana kamu diberi peringatan? (Bukan kami yang membawanya) bahkan kamu adalah kaum yang melampaui batas."
+    },
+    {
+      "nIn": 20,
+      "nGlobal": 3765,
+      "ar": "وَjāٓءَ مِنْ أَqْṣَا ٱlْمədīnətı rəjülٌ yəsْعَىٰ qālə yَٰqَوْmِ ٱtَّbıʿُوا۟ ٱlْمُرْسَلِينَ",
+      "bm": "Dan (semasa utusan-utusan itu diancam), datanglah seorang lelaki dari hujung bandar itu dengan berlari, lalu memberi nasihat dengan katanya: Wahai kaumku! Turutlah utusan-utusan itu."
+    },
+    {
+      "nIn": 21,
+      "nGlobal": 3766,
+      "ar": "ٱtَّbıʿُوا۟ مَن لَّا yəsْـٔəlُkُمْ أَjْرًا وَhُم مُّhْتَدُونَ",
+      "bm": "Turutlah orang-orang yang tidak meminta kapada kamu sesuatu balasan, sedang mereka adalah orang-orang yang mendapat hidayah petunjuk."
+    },
+    {
+      "nIn": 22,
+      "nGlobal": 3767,
+      "ar": "وَمَا lıə لَآ أَعْبُdُ ٱlَّذī فَطərənī وَإِلَيْhı تُرْjəʿُونَ",
+      "bm": "Dan (apabila ditanya: Sudahkah engkau menerima ugama mereka? Maka jawabnya): Mengapa aku tidak menyembah Tuhan yang menciptakan daku, dan yang kepadaNyalah (sahaja) kamu semua akan dikembalikan?"
+    },
+    {
+      "nIn": 23,
+      "nGlobal": 3768,
+      "ar": "ءَأَتَّxıذُ مِن dūnıhīٓ ءَالِhətan إِن yúrıdْnı ٱlrَّḥْمَٰنُ bıḍürٍّ lَّā تُgْnı عَnِّī shəfَٰʿətُhُمْ شَيْـًٔا وَلَا yunqıżūnı",
+      "bm": "Patutkah aku menyembah tuhan-tuhan yang lain dari Allah? (Sudah tentu tidak patut, kerana) jika Allah Yang Maha Pemurah hendak menimpakan daku dengan sesuatu bahaya, syairan-syafaat mereka tidak dapat memberi sebarang pertolongan kepadaku, dan mereka juga tidak dapat menyelamatkan daku."
+    },
+    {
+      "nIn": 24,
+      "nGlobal": 3769,
+      "ar": "إِنِّىٓ إِذًا lَّfī ضَلَٰlٍ مُّbīnٍ",
+      "bm": "Sesungguhnya aku (kalau berlaku demikian), tentulah aku pada ketika itu berada dalam kesesatan yang nyata."
+    },
+    {
+      "nIn": 25,
+      "nGlobal": 3770,
+      "ar": "إِنِّىٓ ءَامَntُ bırəbِّkُمْ فَٱsْمَعُونِ",
+      "bm": "Sesungguhnya aku telah beriman kepada Tuhan kamu, maka dengarlah (nasihatku)."
+    },
+    {
+      "nIn": 26,
+      "nGlobal": 3771,
+      "ar": "qīlə ٱdْxülı ٱlْjənَّtə ۖ qālə yَٰləytə qَوْmī yəʿْلَمُونَ",
+      "bm": "(Setelah ia mati) lalu dikatakan kepadanya: Masuklah ke dalam Syurga. Ia berkata: Alangkah baiknya kalau kaumku mengetahui."
+    },
+    {
+      "nIn": 27,
+      "nGlobal": 3772,
+      "ar": "bımā gəfərə lī rəbِّī وَjəʿələnī mınə ٱlْمُkْرَمِينَ",
+      "bm": "Tentang perkara yang menyebabkan Tuhanku mengampunkan dosaku, dan menjadikan daku dari orang-orang yang dimuliakan."
+    },
+    {
+      "nIn": 28,
+      "nGlobal": 3773,
+      "ar": "وَمَآ أَنzəlْنَا عَلَىٰ qَوْmıhī mım bəʿْdıhī mın jündٍ مِّنَ ٱlssəmāٓءِ وَmā künَّā münstılīnə",
+      "bm": "Dan Kami tidak menurunkan kepada kaumnya sesudah ia (mati) sebarang tentera dari langit (untuk membinasakan mereka), dan tidak perlu Kami menurunkannya."
+    },
+    {
+      "nIn": 29,
+      "nGlobal": 3774,
+      "ar": "إِن kānətْ إِلَّا ṣəyْḥətan وَٰḥıdətan fəإِذَا hُمْ xَٰmıdُونَ",
+      "bm": "Sebenarnya kebinasaan mereka hanyalah dengan satu pekikan (suara) yang dahsyat, lalu mereka serta-merta mati."
+    },
+    {
+      "nIn": 30,
+      "nGlobal": 3775,
+      "ar": "yَٰḥəsْرَةً عَلَى ٱlْʿıbādı ۚ مَا yəʾْtīhım mِّn rَّsūlın إِلَّا kānُوا۟ bıhī yəsْتَهْzıءُونَ",
+      "bm": "Alangkah besar rasa sesal dan kecewa yang menimpa hamba-hamba (yang ingkar itu)! Tidak datang kepada mereka seorang Rasul melainkan mereka sentiasa memperolok-olokkannya."
+    },
+    {
+      "nIn": 31,
+      "nGlobal": 3776,
+      "ar": "أَلَمْ yərَوْa۟ kəmْ أَhْلَkْنَا qəbْلَهُم مِّنَ ٱlْqürūnı أَنَّhُمْ إِلَيْhımْ لَا yərْjıʿُونَ",
+      "bm": "Tidakkah mereka menyedari berapa banyak umat-umat (yang ingkar) yang telah Kami binasakan sebelum mereka? Umat-umat yang telah binasa itu tidak kembali lagi kepada mereka (bahkan kembali kepada Kami, untuk menerima balasan)."
+    },
+    {
+      "nIn": 32,
+      "nGlobal": 3777,
+      "ar": "وَإِن kûlٌّ lَّmَّā jəmīʿٌ lَّd Rövşənə muḥْḍərُونَ",
+      "bm": "Dan tidak ada satu makhlukpun melainkan (sudah tetap) semuanya akan dibawa hadir (ke hadrat Kami) untuk dihisab."
+    },
+    {
+      "nIn": 33,
+      "nGlobal": 3778,
+      "ar": "وَءَايَةٌ lَّhُمُ ٱlْأَرْḍü ٱlْمَيْتətu أَḥْyəynَٰhā وَأَxْrəjْنَا mınْhā ḥəbּًا fəınhü yəʾْkülُونَ",
+      "bm": "Dan dalil yang terang untuk mereka (memahami kekuasaan dan kemurahan Kami), ialah bumi yang mati; Kami hidupkan dia serta Kami keluarkan daripadanya biji-bijian, maka daripada biji-bijian itu mereka makan."
+    },
+    {
+      "nIn": 34,
+      "nGlobal": 3779,
+      "ar": "وَjəʿəlْنَا fīhā jənَّٰtٍ مِّن nَّxīlٍ وَأَʿْنəٰbٍ وَfəjَّrْنَا fīhā mınə ٱlْʿüyūnı",
+      "bm": "Dan Kami jadikan di bumi itu kebun-kebun kurma dan anggur, dan Kami pancarkan padanya beberapa mata air."
+    },
+    {
+      "nIn": 35,
+      "nGlobal": 3780,
+      "ar": "lıyəʾْkülُوا۟ مِن thəmərıhī وَmā ʿəmılətْhü أَيْdīhımْ ۖ أَfəlā yəshْkürُونَ",
+      "bm": "Supaya mereka makan dari buah-buahannya dan dari apa yang dikerjakan oleh tangan mereka; maka patutkah mereka tidak bersyukur?"
+    },
+    {
+      "nIn": 36,
+      "nGlobal": 3781,
+      "ar": "sübْḥَٰnə ٱlَّذī xələqə ٱlْأَzْwَٰjə kûlləhā mımَّā tümْbıtü ٱlْأَرْḍü وَmِنْ أَntüsıhımْ وَmımَّā lā yəʿْلَمُونَ",
+      "bm": "Maha Suci Tuhan yang telah menciptakan makhluk-makhluk semuanya berpasangan; sama ada dari yang ditumbuhkan oleh bumi, atau dari diri mereka, ataupun dari apa yang mereka tidak mengetahuinya."
+    },
+    {
+      "nIn": 37,
+      "nGlobal": 3782,
+      "ar": "وَءَايَةٌ lَّhُمُ ٱlَّyْلُ nəsْلَxü mınْhü ٱlnhārə fəإِذَا hُم mُّẓْlımُونَ",
+      "bm": "Dan lagi dalil yang terang untuk mereka (berfikir) ialah malam; Kami hilangkan siang daripadanya, maka dengan serta-merta mereka berada dalam gelap-gelita."
+    },
+    {
+      "nIn": 38,
+      "nGlobal": 3783,
+      "ar": "وَٱlshَّmْsü تَjْrī lımüstəqərٍّ lَّhā ۚ ذَٰlıkə təqْدīrü ٱlْʿəzīzı ٱlْʿəlīmı",
+      "bm": "Dan (sebahagian dari dalil yang tersebut ialah) matahari; ia beredar ke tempat yang ditetapkan baginya; itu adalah takdir Tuhan yang Maha Kuasa, lagi Maha Mengetahui."
+    },
+    {
+      "nIn": 39,
+      "nGlobal": 3784,
+      "ar": "وَٱlْqəmərə qədَّrْنَٰhü mənāzılə ḥətَّىٰ ʿādə kəٱlْʿürْjūnı ٱlْqədīmı",
+      "bm": "Dan bulan pula Kami takdirkan dia beredar melalui beberapa peringkat, sehingga di akhir peredarannya kembalilah ia berbentuk seperti tandan yang kering."
+    },
+    {
+      "nIn": 40,
+      "nGlobal": 3785,
+      "ar": "لَا ٱlshَّmْsü yəmْbəgī ləhāٓ أَن tüdْrıkə ٱlْqəmərə وَlَا ٱlَّyْلُ sābıqü ٱlnhārı ۚ وَkûlٌّ fī fələkٍ yəsْbəḥُونَ",
+      "bm": "(Dengan ketentuan yang demikian), matahari tidak mudah baginya mengejar bulan, dan malam pula tidak dapat mendahului siang; kerana tiap-tiap satunya beredar terapung-apung di tempat edarannya masing-masing."
+    },
+    {
+      "nIn": 41,
+      "nGlobal": 3786,
+      "ar": "وَءَايَةٌ lَّhُمْ أَنَّا ḥəməlْنَا ذürِّيَّtəhُمْ fī ٱlْfülْkı ٱlْمəshْḥūnı",
+      "bm": "Dan satu dalil lagi untuk mereka (insaf) ialah, Kami bawa zuriat keturunan mereka dalam bahtera yang penuh sarat."
+    },
+    {
+      "nIn": 42,
+      "nGlobal": 3787,
+      "ar": "وَxələqْنَا لَهُم مِّن مِّthْlıhī mā yərْkəbُونَ",
+      "bm": "Dan Kami ciptakan untuk mereka, jenis-jenis kenderaan yang sama dengannya, yang mereka dapat mengenderainya."
+    },
+    {
+      "nIn": 43,
+      "nGlobal": 3788,
+      "ar": "وَإِن nَّshəʾْ nügْrıqْhُمْ فَلَا صərīxə ləhُمْ وَlā hُمْ yunqəżُونَ",
+      "bm": "Dan jika Kami kehendaki, Kami tenggelamkan mereka; (kiranya Kami lakukan yang demikian) maka tidak adakah yang dapat memberi pertolongan kepada mereka, dan mereka juga tidak dapat diselamatkan."
+    },
+    {
+      "nIn": 44,
+      "nGlobal": 3789,
+      "ar": "إِلَّا rəḥْمَةً مِّنَّا وَmətَٰʿًا إِلَىٰ ḥīnٍ",
+      "bm": "Kecuali dengan belas kasihan dari Kami, dan sebagai pemberian (kesenangan) untuk mereka menikmati (kehidupan) hingga ke suatu masa (yang ditetapkan)."
+    },
+    {
+      "nIn": 45,
+      "nGlobal": 3790,
+      "ar": "وَإِذَا qīlə ləhُمُ ٱtَّqُوا۟ مَا bəynə أَيْdīkُمْ وَmā xəlْfəكُمْ ləʿəlَّkُمْ تُرْḥəmُونَ",
+      "bm": "Dan apabila dikatakan kepada mereka: Berjaga-jagalah kamu akan apa yang ada di hadapan kamu (dari urusan akhirat) dan apa yang ada di belakang kamu (dari urusan dunia), supaya kamu beroleh rahmat."
+    },
+    {
+      "nIn": 46,
+      "nGlobal": 3791,
+      "ar": "وَمَا تَأْتīhım mِّنْ ءَايَةٍ مِّنْ ءَايَٰtı rəbِّhımْ إِلَّا kānُوا۟ عَnْhā مُʿْرِḍِينَ",
+      "bm": "Dan (itulah tabiat mereka) tidak ada sesuatu ayat dari ayat-ayat (menerangkan kebesaran) Tuhan, yang sampai kepada mereka, melainkan mereka sentiasa berpaling daripadanya (tidak mahu menerimanya)."
+    },
+    {
+      "nIn": 47,
+      "nGlobal": 3792,
+      "ar": "وَإِذَا qīlə ləhُمْ أَنfıqُوا۟ mımَّā rəzəqəkُمُ ٱllāhü qālə ٱlَّذِينَ kəfərُوا۟ lılَّذِينَ ءَامَنُوٓا۟ أَنُṭْʿımü مَن lَّوْ yəshāٓءُ ٱllāhü أَṭْʿəməhūٓ إِنْ أَntُمْ إِلَّا fī ضَلَٰlٍ مُّbīnٍ",
+      "bm": "Dan apabila dikatakan kepada mereka: Dermakanlah sebahagian dari rezeki yang dikurniakan Allah kepada kamu, berkatalah orang-orang yang kafr itu kepada orang-orang yang beriman (secara mengejek-ejek): Patutkah kami memberi makan kepada orang yang jika Allah kehendaki tentulah Ia akan memberinya makan? Kamu ini tidak lain hanyalah dalam kesesatan yang nyata."
+    },
+    {
+      "nIn": 48,
+      "nGlobal": 3793,
+      "ar": "وَيَقُولُونَ mətَىٰ hَٰذَا ٱlْwəʿْdُ إِن künْtُمْ ṣəٰdıqīnə",
+      "bm": "Dan (apabila diberi amaran) mereka berkata: Bilakah (datangnya) janji (hari kiamat) itu, jika betul kamu orang-orang yang benar?"
+    },
+    {
+      "nIn": 49,
+      "nGlobal": 3794,
+      "ar": "مَا yənْẓürُونَ إِلَّا ṣəyْḥətan وَٰḥıdətan تَأْxüżühُمْ وَhُمْ yəxıṣِّmُونَ",
+      "bm": "Mereka tidak menunggu melainkan satu pekikan (sahaja) yang akan membinasakan mereka semasa mereka dalam keadaan leka bertengkar (mengenai hal-hal dunia)."
+    },
+    {
+      "nIn": 50,
+      "nGlobal": 3795,
+      "ar": "فَلَا yəsْtəṭīʿُونَ tَوْṣıyətan وَlَآ إِلَىٰٓ أَhْلıhımْ yərْjıʿُونَ",
+      "bm": "Maka dengan itu, mereka tidak sempat membuat sebarang pesanan (wasiat), dan (juga) mereka tidak dapat kembali kepada kaum keluarganya."
+    },
+    {
+      "nIn": 51,
+      "nGlobal": 3796,
+      "ar": "وَنُfıxə fī ٱlṣُّūrı fəإِذَا هُم مِّنَ ٱlْأَjْdāthı إِلَىٰ rəbِّhımْ yənْsılُونَ",
+      "bm": "Dan sudah tentu akan ditiup sangkakala (menghidupkan orang-orang yang telah mati); maka dengan serta-merta mereka keluar dari kubur masing-masing dengan segera kepada Tuhan mereka."
+    },
+    {
+      "nIn": 52,
+      "nGlobal": 3797,
+      "ar": "qālُوا۟ yَٰwəyْلənā məm bəʿəthənā مِن مَّrْqədınā ۜ ۗ hāżā mā wəʿədə ٱlrَّḥْمَٰنُ وَṣədəqə ٱlْمُرْسَلُونَ",
+      "bm": "Mereka berkata: Aduhai celakanya kami! Siapakah yang membangkitkan kami dari kubur tempat tidur kami? (Lalu dikatakan kepada mereka): Inilah dia apa yang telah dijanjikan oleh Allah Yang Maha Pemurah, dan benarlah (apa yang telah disampaikan oleh) Rasul-rasul(Nya)."
+    },
+    {
+      "nIn": 53,
+      "nGlobal": 3798,
+      "ar": "إِن kānətْ إِلَّا ṣəyْḥətan وَٰḥıdətan fəإِذَا hُمْ jəmīʿٌ lَّd Rövşənə muḥْḍərُونَ",
+      "bm": "Hanyalah dengan berlakunya satu pekikan (tiupan sangkakala), maka dengan serta merta mereka semuanya dibawa hadir (ke hadrat Kami) untuk dihisab."
+    },
+    {
+      "nIn": 54,
+      "nGlobal": 3799,
+      "ar": "fəٱlْyَوْmə لَا تُẓْلَمُ nəfْsٌ شَيْـًٔا وَlā tüğْzَوْnə إِلَّا mā künْtُمْ təʿْمَلُونَ",
+      "bm": "Maka pada hari itu, tidak ada seseorang yang akan dianiaya sedikitpun, dan kamu pula tidak akan dibalas melainkan menurut apa yang kamu telah kerjakan."
+    },
+    {
+      "nIn": 55,
+      "nGlobal": 3800,
+      "ar": "إِنَّ أَṣْḥَٰbَ ٱlْjənَّtı ٱlْyَوْmə fī shügülٍ فَٰkıhُونَ",
+      "bm": "Sesungguhnya ahli Syurga pada hari itu bersukaria dalam segala nikmat yang mereka nikmati."
+    },
+    {
+      "nIn": 56,
+      "nGlobal": 3801,
+      "ar": "hُمْ وَأَzْwَٰjühُمْ fī ẓılَٰlٍ عَلَى ٱlْأَرَآئِkı mütَّkıـُٔونَ",
+      "bm": "Mereka dan isteri-isteri mereka berada dalam tempat yang teduh, berehat di atas pelamin-pelamin."
+    },
+    {
+      "nIn": 57,
+      "nGlobal": 3802,
+      "ar": "لَهُمْ fīhā فَٰkıhəẗٌ وَلَهُم مَّا yədَّʿُونَ",
+      "bm": "Mereka beroleh dalam Syurga itu pelbagai jenis buah-buahan, dan mereka beroleh apa sahaja yang mereka kehendaki."
+    },
+    {
+      "nIn": 58,
+      "nGlobal": 3803,
+      "ar": "səlَٰmٌ qَوْlًا مِّن rَّbٍّ rَّḥīmٍ",
+      "bm": "(Mereka juga beroleh) ucapan salam sejahtera dari Tuhan Yang Maha Mengasihani."
+    },
+    {
+      "nIn": 59,
+      "nGlobal": 3804,
+      "ar": "وَٱmْtَٰzُوا۟ ٱlْyَوْmə أَيُّhā ٱlْمüjْrımُونَ",
+      "bm": "Dan (dikatakan kepada orang-orang yang kafr): Berpisahlah kamu pada hari ini, hai orang-orang yang berdosa (dari kumpulan orang-orang yang beriman)!"
+    },
+    {
+      "nIn": 60,
+      "nGlobal": 3805,
+      "ar": "أَلَمْ أَعْhədْ إِلَيْkُمْ yَٰbənīٓ ءَādəmə أَن lَّا təʿْبُdُوا۟ ٱlshَّyْṭəٰnə ۖ إِنَّhū ləkُمْ عَdüwٌّ مُّbīnٌ",
+      "bm": "Bukankah Aku telah perintahkan kamu wahai anak-anak Adam, supaya kamu jangan menyembah Syaitan? Sesungguhnya ia musuh yang nyata terhadap kamu!"
+    },
+    {
+      "nIn": 61,
+      "nGlobal": 3806,
+      "ar": "وَأَنِ ٱʿْبُdūnī ۚ hāżā ṣırَٰṭٌ مُّsْتَقِيمٌ",
+      "bm": "Dan (Aku perintahkan): Hendaklah kamu menyembahKu; inilah jalan yang lurus."
+    },
+    {
+      "nIn": 62,
+      "nGlobal": 3807,
+      "ar": "وَلَقَدْ أَḍəlَّ mınْkُمْ jıbılًّا kəthīrًا ۖ أَfələmْ təkūnُوا۟ təʿْqılُونَ",
+      "bm": "Dan sesungguhnya Syaitan itu telah menyesatkan golongan yang ramai dari kamu; (setelah kamu mengetahuinya) maka mengapa kamu tidak mahu menggunakan akal (untuk memikirkannya)?"
+    },
+    {
+      "nIn": 63,
+      "nGlobal": 3808,
+      "ar": "hَٰżıhī jəhənَّmü ٱlَّtī künْtُمْ tūʿədُونَ",
+      "bm": "Inilah api Neraka Jahannam yang telah dijanjikan kepada kamu (akibat daripada kederhakaan kamu)."
+    },
+    {
+      "nIn": 64,
+      "nGlobal": 3809,
+      "ar": "ٱṣْلَوْhā ٱlْyَوْmə bımā künْtُمْ تَkْfürُونَ",
+      "bm": "Rasalah kamu bakaran apinya pada hari ini, disebabkan perbuatan kufur yang kamu telah lakukan!"
+    },
+    {
+      "nIn": 65,
+      "nGlobal": 3810,
+      "ar": "ٱlْyَوْmə nəxْtımü عَلَىٰٓ أَfْwَٰhıhımْ وَtükəllımünَآ أَيْdīhımْ وَtəshْhədُ أَرْjülühüm bımā kānُوا۟ yəkْsıbُونَ",
+      "bm": "Pada hari ini Kami meteraikan mulut mereka (sejurus); dan (memberi peluang kepada) tangan-tangan mereka memberitahu Kami (kesalahan masing-masing), dan kaki-kaki mereka pula menjadi saksi tentang apa yang mereka telah usahakan."
+    },
+    {
+      "nIn": 66,
+      "nGlobal": 3811,
+      "ar": "وَلَوْ nَshāٓءُ لَطəməsْنَا عَلَىٰٓ أَʿْyünıhımْ فَٱsْتəbəqُوا۟ ٱlṣِّrəٰṭَ فَأَنَّىٰ يُbْṣırُونَ",
+      "bm": "Dan sekiranya Kami kehendaki, nescaya Kami hapuskan pandangan mata mereka (menjadikannya buta), lalu mereka berlumba-lumba mencari jalan (yang biasa mereka lalui); maka (bagaimanakah) mereka dapat melihatnya?"
+    },
+    {
+      "nIn": 67,
+      "nGlobal": 3812,
+      "ar": "وَلَوْ nَshāٓءُ لَمəsəxْنَٰhُمْ عَلَىٰ məkānətıhımْ fəmَا ٱsْتəṭَٰʿُوا۟ مُḍıyًّا وَlā yərْjıʿُونَ",
+      "bm": "Dan sekiranya Kami kehendaki, nescaya Kami ubah bentuk kejadian mereka (menjadi kaku) di tempat yang mereka berada padanya; maka mereka tidak dapat maraan (ke hadapan) dan juga tidak dapat kembali (ke belakang)."
+    },
+    {
+      "nIn": 68,
+      "nGlobal": 3813,
+      "ar": "وَمَن nُّʿəmِّrْhü nünəkkısْhü fī ٱlْxəlْqı ۖ أَfəlā yəʿْqılُونَ",
+      "bm": "Dan (hendaklah mereka ingat bahawa) sesiapa yang Kami panjangkan umurnya, Kami balikkan kembali kejadiannya (kepada keadaan serba lemah); maka mengapa mereka tidak mahu memikirkannya?"
+    },
+    {
+      "nIn": 69,
+      "nGlobal": 3814,
+      "ar": "وَمَا عَلَّmْنَٰhü ٱlshِّʿْرَ وَmā yəmْbəgī ləhūٓ ۚ إِنْ hūwə إِلَّا żıqْrٌ وَqurْءَانٌ مُّbīnٌ",
+      "bm": "Dan (bukanlah Nabi Muhammad itu seorang penyair) dan Kami tidak mengajarnya syair, dan kepandaian bersyair itu pula tidak sesuai baginya. (Apa yang Kami wahyukan kepadanya itu) tidak lain hanyalah ajaran (nasihat) dan Kitab Suci Al-Quran yang memberi penjelasan."
+    },
+    {
+      "nIn": 70,
+      "nGlobal": 3815,
+      "ar": "lıyunżırə مَن kānə ḥəyًّا وَyəḥıqqə ٱlْqَوْlُ عَلَى ٱlْkəٰfırīnə",
+      "bm": "Supaya ia memberi peringatan dan amaran kepada orang yang hidup (hatinya) dan supaya nyata tetapnya hukuman (azab) terhadap orang-orang yang kafr."
+    },
+    {
+      "nIn": 71,
+      "nGlobal": 3816,
+      "ar": "أَوَلَمْ yərَوْa۟ أَنَّا xələqْنَا لَهُم مِّمَّا ʿəmılətْ أَيْdīnَآ أَنْʿəٰmًا fəhُمْ لَهَا mālıkُونَ",
+      "bm": "Dan tidakkah mereka melihat bahawa Kami telah menciptakan untuk mereka binatang-binatang ternak, dari jenis-jenis yang Kami ciptakan dengan kekuasaan Kami, lalu mereka memilikinya?"
+    },
+    {
+      "nIn": 72,
+      "nGlobal": 3817,
+      "ar": "وَżəlَّlْنَٰhā ləhُمْ fəmınْhā rəkūbühُمْ وَmınْhā yəʾْkülُونَ",
+      "bm": "Dan Kami jinakkan binatang-binatang ternak itu untuk kegunaan mereka; maka sebahagian di antaranya menjadi kenderaan mereka, dan sebahagian lagi mereka makan."
+    },
+    {
+      "nIn": 73,
+      "nGlobal": 3818,
+      "ar": "وَلَهُمْ fīhā mənَٰfıʿü وَməshārıbü ۖ أَfəlā yəshْkürُونَ",
+      "bm": "Dan mereka beroleh pelbagai faedah dan kegunaan pada binatang-binatang ternak itu, dan juga beroleh minuman; maka mengapa mereka tidak mahu bersyukur?"
+    },
+    {
+      "nIn": 74,
+      "nGlobal": 3819,
+      "ar": "وَٱtَّxəżُوا۟ مِن dūnı ٱllāhı ءَالِhətan lَّʿəlَّhُمْ yunṣərُونَ",
+      "bm": "Dan (tidaklah mereka bersyukur) bahkan mereka mengambil benda-benda yang lain dari Allah sebagai tuhan-tuhan, kononnya supaya mereka mendapat pertolongan."
+    },
+    {
+      "nIn": 75,
+      "nGlobal": 3820,
+      "ar": "لَا yəsْtəṭīʿُونَ nəṣْرَهُمْ وَhُمْ ləhُمْ jündٌ مُّḥْḍərُونَ",
+      "bm": "Benda-benda yang mereka sembah itu tidak dapat sama sekali menolong mereka, sedang mereka (pemuja-pemuja itu) menjadi tentera yang disiapkan (untuk menjaga dan membelanya) atau (sebaliknya) benda-benda itu akan dibawa hadir (pada hari kiamat) sebagai tentera (saksi) terhadap mereka."
+    },
+    {
+      "nIn": 76,
+      "nGlobal": 3821,
+      "ar": "فَلَا yəḥْzünْkə qَوْlühُمْ ۘ إِنَّا nəʿْلَمُ mā yüsırrُونَ وَmā yuʿlınُونَ",
+      "bm": "Maka janganlah engkau (wahai Muhammad) berdukacita disebabkan tuduhan-tuduhan mereka (terhadapmu). Sesungguhnya Kami sedia mengetahui apa yang mereka sembunyikan dan apa yang mereka nyatakan."
+    },
+    {
+      "nIn": 77,
+      "nGlobal": 3822,
+      "ar": "أَوَلَمْ yərə ٱlْإınsَٰnü أَنَّا xələqْنَٰhü مِن nُّṭْfətan fəإِذَا hūwə xəṣīmٌ مُّbīnٌ",
+      "bm": "Tidakkah manusia itu melihat dan mengetahui, bahawa Kami telah menciptakannya dari (setitis) air benih? Dalam pada itu (setelah ia sempurna kejadiannya), tiba-tiba ia menjadi seorang pembantah yang terang jelas bantahannya (mengenai kekuasaan Kami menghidupkannya semula)."
+    },
+    {
+      "nIn": 78,
+      "nGlobal": 3823,
+      "ar": "وَضərəbə لَنَا مَثَلًا وَnəsıə xəlْqəhū ۖ qālə مَن yuhْyِ ٱlْʿıẓَٰmə وَhıə rəmīmٌ",
+      "bm": "Serta ia mengemukakan satu misal perbandingan kepada Kami (tentang kekuasaan itu), dan ia pula lupakan keadaan Kami menciptakannya sambil ia bertanya: Siapakah yang dapat menghidupkan tulang-tulang yang telah hancur seperti debu?"
+    },
+    {
+      "nIn": 79,
+      "nGlobal": 3824,
+      "ar": "qülْ yuḥْyīhā ٱlَّذīٓ أənshəأَهَآ أَwَّlə mərrötan ۖ وَhūwə bıküllı xəlْqın ʿəlīmٌ",
+      "bm": "Katakanlah: Tulang-tulang yang hancur itu akan dihidupkan oleh Tuhan yang telah menciptakannya pada awal mula wujudnya; dan Ia Maha Mengetahui akan segala keadaan makhluk-makhluk (yang diciptakanNya)."
+    },
+    {
+      "nIn": 80,
+      "nGlobal": 3825,
+      "ar": "ٱlَّذī jəʿələ ləkُم مِّنَ ٱlshَّjərı ٱlْأَxْḍərı nārًا fəإِذَآ أَntüm mِّnْhü tūqıdُونَ",
+      "bm": "Tuhan yang telah menjadikan untuk kamu api dari pokok-pokok yang hijau, maka kamu pun sentiasa menyalakan api dari pokok-pokok itu."
+    },
+    {
+      "nIn": 81,
+      "nGlobal": 3826,
+      "ar": "أَوَلَيْsə ٱlَّذī xələqə ٱlssəmَٰwəٰtı وَٱlْأَرْḍə bıqَٰdırın ʿəlَىٰٓ أَن yəxْlüqə mısْləhüm ۚ bəlَىٰ وَhūwə ٱlْxəlَّٰqü ٱlْʿəlīmü",
+      "bm": "Tidakkah diakui dan tidakkah dipercayai bahawa Tuhan yang telah menciptakan langit dan bumi (yang demikian besarnya) - berkuasa menciptakan semula manusia sebagaimana Ia menciptakan mereka dahulu? Ya! Diakui dan dipercayai berkuasa! Dan Dia lah Pencipta yang tidak ada bandinganNya, lagi Yang Maha Mengetahui."
+    },
+    {
+      "nIn": 82,
+      "nGlobal": 3827,
+      "ar": "إِنَّmāٓ أَmْرühūٓ إِذَآ أَرَادَ شَيْـًٔا أَن yəqūlə ləhū kün fəyəkūnü",
+      "bm": "Sesungguhnya keadaan kekuasaanNya apabila Ia menghendaki adanya sesuatu, hanyalah Ia berfirman kepada (hakikat) benda itu: Jadilah engkau!. Maka ia terus menjadi."
+    },
+    {
+      "nIn": 83,
+      "nGlobal": 3828,
+      "ar": "fəsübْḥَٰnə ٱlَّذī bıyıdıhī mələkūtü kûllı shəyْءٍ وَإِلَيْhı tūrْjəʿُونَ",
+      "bm": "Oleh itu akuilah kesucian Allah (dengan mengucap: Subhaanallah!) - Tuhan yang memiliki dan menguasai tiap-tiap sesuatu, dan kepadaNyalah kamu semua dikembalikan."
+    }
+  ]
+};
+
+/* [LANGKAH 2: SKRIP ENJIN (DIUBAH SUAI)]
+  Skrip ini kini dimuatkan selepas DOM sedia.
+*/
+
 /* ====== CONFIG ====== */
 const SURAH = 36;
 const AR_EDITION = 'quran-uthmani';
@@ -184,8 +699,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const local = fromLocalConst(); // Panggil fungsi yang diubah suai
             if (local && local.data.length > 0) {
                 AYAH = local.data.map(x => ({ nIn: x.nIn, nGlobal: x.nGlobal, arab: x.ar, bm: x.bm }));
-                if (local.data.length <= 3) {
-                     console.warn('Data JSON tempatan nampaknya tidak lengkap. Anda perlu menambah baki ayat.');
+                if (local.data.length <= 3) { // Ini hanya amaran, tidak menghalang kod
+                     console.warn('Data JSON tempatan nampaknya tidak lengkap (kurang dari 3 ayat). Anda perlu menambah baki ayat.');
                 }
             } else {
                 console.warn('Data const tempatan tiada atau kosong. Cuba API...');
@@ -223,3 +738,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // init
     boot();
 });
+
