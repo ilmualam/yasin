@@ -144,13 +144,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function next() { if (VIEW.length) playAt(Math.min(VIEW.length - 1, (cur | 0) + 1)); }
 
     function applyFilter() {
-        const t = q.value.trim().toLowerCase();
-        VIEW = !t ? AYAH.slice()
-            : AYAH.filter(v => v.arab.includes(t) || v.bm.toLowerCase().includes(t) || ('' + v.nIn) === t);
-        render(VIEW);
-        cur = -1;
-        now.textContent = !t ? 'Sedia dimainkan — pilih mana-mana ayat' : `Ditapis: ${VIEW.length} ayat`;
-    }
+  const t = q.value.trim().toLowerCase();
+  VIEW = !t ? AYAH.slice()
+    : AYAH.filter(v =>
+        (v.arab && v.arab.indexOf(t) !== -1) ||
+        (v.bm && v.bm.toLowerCase().indexOf(t) !== -1) ||
+        ('' + v.nIn) === t
+      );
+  render(VIEW);
+  cur = -1;
+  now.textContent = !t ? 'Sedia dimainkan — pilih mana-mana ayat' : `Ditapis: ${VIEW.length} ayat`;
+}
 
     async function fetchJSON(url, ms = 12000) {
         const ctrl = new AbortController();
