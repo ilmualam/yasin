@@ -27,6 +27,7 @@ const RECITER = 'ar.alafasy';
 
 /* ====== STATE ====== */
 let AYAH = [], VIEW = [], cur = -1;
+let showBasmala = false;
 
 /* ====== DOM (diletakkan dalam DOMContentLoaded) ====== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -52,20 +53,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ====== HELPERS ====== */
-    const cdn = (g) => `https://cdn.islamic.network/quran/audio/${CDN_BITRATE}/${RECITER}/${g}.mp3`;
+    // Audio sources helpers
+    const urlByGlobal = (g) => `https://cdn.islamic.network/quran/audio/${CDN_BITRATE}/${RECITER}/${g}.mp3`;
+    // Many players/CDNs accept SURAH:AYAH addressing; prefer this for guaranteed sync
+    const urlBySurahAyah = (s, a) => `https://cdn.islamic.network/quran/audio/${CDN_BITRATE}/${RECITER}/${s}:${a}.mp3`;
+    // Fallback to EveryAyah (Mishary) with 3-digit padding if CDN variant fails
+    const pad3 = (n) => String(n).padStart(3, '0');
+    const urlEveryAyah = (s, a) => `https://everyayah.com/data/MisharyRashidAlafasy_${CDN_BITRATE}kbps/${pad3(s)}${pad3(a)}.mp3`;
     const $el = (t, a = {}, h) => { const e = document.createElement(t); for (const k in a) e.setAttribute(k, a[k]); if (h !== undefined) e.innerHTML = h; return e; };
+
+    // Remove basmala from ayah 1 for non-Fatiha surahs to sync with per-ayah audio
+    const BASMALAH_FORMS = [
+        'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
+        'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ',
+        'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+        'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+        'بسم الله الرحمن الرحيم'
+    ];
+    function sanitizeArabic(surah, nIn, text) {
+        if (surah !== 1 && nIn === 1 && typeof text === 'string') {
+            let t = text.trim();
+            for (const f of BASMALAH_FORMS) {
+                if (t.startsWith(f)) { t = t.slice(f.length).trim(); break; }
+            }
+            return t;
+        }
+        return text;
+    }
+
+    // Canonical basmala text for visual inclusion when toggled
+    const CANON_BASMALA = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
+
+    function arabForDisplay(v) {
+        if (SURAH !== 1 && v.nIn === 1 && showBasmala) {
+            // Avoid double basmala if present somehow
+            const t = typeof v.arab === 'string' ? v.arab.trim() : '';
+            for (const f of BASMALAH_FORMS) {
+                if (t.startsWith(f)) return t; // already has it
+            }
+            return `${CANON_BASMALA} ${t}`.trim();
+        }
+        return v.arab;
+    }
 
     function render(items) {
         list.innerHTML = '';
         items.forEach((v, i) => {
             const card = $el('article', { 'class': 'ayah', 'data-idx': i });
             card.appendChild($el('span', { 'class': 'num' }, String(v.nIn)));
-            const ar = $el('div', { 'class': 'ar', dir: 'rtl', lang: 'ar' }); ar.textContent = v.arab;
+            const ar = $el('div', { 'class': 'ar', dir: 'rtl', lang: 'ar' }); ar.textContent = arabForDisplay(v);
             const bm = $el('div', { 'class': 'bm', lang: 'ms' }); bm.textContent = v.bm;
             const row = $el('div', { 'class': 'row' });
             
             const bP = $el('button', { 'class': 'play', 'data-idx': i }, '▶ Play Ayat Ini');
-            const bC = $el('button', { 'class': 'play', 'data-copy': `${v.arab}\n\n${v.bm}` }, 'Copy');
+            const bC = $el('button', { 'class': 'play', 'data-copy': `${arabForDisplay(v)}\n\n${v.bm}` }, 'Copy');
             
             row.appendChild(bP); 
             row.appendChild(bC);
@@ -127,8 +168,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i < 0 || i >= VIEW.length) return;
         cur = i;
         const v = VIEW[i];
-        audio.src = cdn(v.nGlobal);
-        audio.play().catch(() => { /* user gesture needed */ });
+        const sources = [
+            urlBySurahAyah(SURAH, v.nIn),
+            urlByGlobal(v.nGlobal),
+            urlEveryAyah(SURAH, v.nIn)
+        ];
+
+        let si = 0;
+        const tryPlay = () => {
+            audio.onerror = () => {
+                si++;
+                if (si < sources.length) {
+                    audio.src = sources[si];
+                    // load then try play; some browsers need a gesture but we retry silently
+                    audio.play().catch(() => {/* gesture may be needed; UI remains responsive */});
+                } else {
+                    now.textContent = `Gagal memuat audio untuk ayat ${v.nIn}`;
+                    btnP.textContent = '▶';
+                }
+            };
+            audio.src = sources[si];
+            audio.play().catch(() => {/* gesture may be needed; UI remains responsive */});
+        };
+
+        tryPlay();
         btnP.textContent = '⏸';
         highlight(i);
         status(i);
@@ -176,7 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('API response not OK');
         }
         const A = ar.data.ayahs, M = ms.data.ayahs;
-        AYAH = A.map((a, i) => ({ nIn: a.numberInSurah, nGlobal: a.number, arab: a.text, bm: (M[i]?.text || '') }));
+        AYAH = A.map((a, i) => ({
+            nIn: a.numberInSurah,
+            nGlobal: a.number,
+            arab: sanitizeArabic(SURAH, a.numberInSurah, a.text),
+            bm: (M[i]?.text || '')
+        }));
     }
 
     /* [PENGUBAHSUAIAN PENTING]
@@ -196,9 +264,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function boot() {
         try {
+            // Load preference for basmala visibility (default off)
+            try { showBasmala = localStorage.getItem('yasin.showBasmala') === '1'; } catch {}
+
             const local = fromLocalConst(); // Panggil fungsi yang diubah suai
             if (local && local.data.length > 0) {
-                AYAH = local.data.map(x => ({ nIn: x.nIn, nGlobal: x.nGlobal, arab: x.ar, bm: x.bm }));
+                AYAH = local.data.map(x => ({
+                    nIn: x.nIn,
+                    nGlobal: x.nGlobal,
+                    arab: sanitizeArabic(SURAH, x.nIn, x.ar),
+                    bm: x.bm
+                }));
                 if (local.data.length <= 3) { // Ini hanya amaran, tidak menghalang kod
                      console.warn('Data JSON tempatan nampaknya tidak lengkap (kurang dari 3 ayat). Anda perlu menambah baki ayat.');
                 }
@@ -209,6 +285,26 @@ document.addEventListener('DOMContentLoaded', () => {
             VIEW = AYAH.slice();
             render(VIEW);
             status(-1);
+
+            // Inject basmala toggle UI near autoplay control if available
+            try {
+                const host = auto && auto.parentElement ? auto.parentElement : (list && list.parentElement ? list.parentElement : null);
+                if (host && !document.getElementById('ys-basmala')) {
+                    const lbl = $el('label', { id: 'ys-basmala-toggle', style: 'margin-left:8px; cursor:pointer; user-select:none;' });
+                    const cb = $el('input', { type: 'checkbox', id: 'ys-basmala', style: 'vertical-align:middle; margin-right:6px;' });
+                    cb.checked = !!showBasmala;
+                    lbl.appendChild(cb);
+                    lbl.appendChild(document.createTextNode('Tunjuk Basmala (Ayat 1)'));
+                    host.appendChild(lbl);
+                    cb.addEventListener('change', () => {
+                        showBasmala = cb.checked;
+                        try { localStorage.setItem('yasin.showBasmala', showBasmala ? '1' : '0'); } catch {}
+                        const keep = cur;
+                        render(VIEW);
+                        if (keep >= 0) highlight(keep);
+                    });
+                }
+            } catch {}
         } catch (e) {
             console.error(e);
             list.innerHTML = `<article class="ayah" style="text-align:center; color:red;">Gagal memuat data Surah Yasin. Sila semak sambungan internet anda atau data const tempatan.</article>`;
@@ -232,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return; 
         }
         const idx = parseInt(act.getAttribute('data-idx'), 10), v = VIEW[idx];
-        copyText(copyS, `${v.nIn}. ${v.arab}\n${v.bm}\n\n- (Dipetik dari ${location.hostname})`);
+        copyText(copyS, `${v.nIn}. ${arabForDisplay(v)}\n${v.bm}\n\n- (Dipetik dari ${location.hostname})`);
     });
 
     // init
